@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tiêu đề sẽ được cập nhật bằng JavaScript -->
+    <title>Mod Skin cho Tướng - TẠC THIÊN BANG MOD</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link đến file CSS của bạn -->
+</head>
+<body>
+    <header>
+        <!-- Tên tướng sẽ được cập nhật bằng JavaScript -->
+        <h1 id="character-name">Đang tải thông tin tướng...</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <!-- Có thể thêm các link điều hướng khác nếu cần -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="mod-list">
+            <h2>Danh sách Mod</h2>
+            <!-- Container này sẽ chứa danh sách các mod card được tạo bởi JavaScript -->
+            <div class="grid-container mod-grid" id="mod-list-container">
+                <!-- Nội dung mod sẽ được thêm vào đây động -->
+                <p>Đang tải danh sách mod...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 TẠC THIÊN BANG MOD. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Phần JavaScript xử lý logic -->
+    <script>
+        // ================================================
+        // 1. DỮ LIỆU MOD CHO CÁC TƯỚNG
+        // ================================================
+        // Bạn cần cập nhật và thêm dữ liệu vào đây
+        // Key: tên tướng (viết thường, khớp với giá trị trong ?hero=...)
+        // Value: Mảng các object, mỗi object là một mod
+        const heroModsData = {
+            mina: [
+                {
+                    id: 'Castorice',
+                    name: 'Castorice Mod',
+                    description: 'Mod skin Mina Castorice.',
+                    thumb: 'images/mina_castorice_thumb.jpg', // Đường dẫn ảnh thumbnail
+                    detailPage: 'mod_detail.html?hero=mina&mod=castorice' // Link đến trang chi tiết
+                },
+            ],
+            nakroth: [
+                {
+                    id: 'xiao',
+                    name: 'Xiao Mod',
+                    description: 'Mod skin Nakroth Xiao (tiên nhân).',
+                    thumb: 'images/nakroth_xiao_thumb.jpg', // Nhớ tạo ảnh này
+                    detailPage: 'mod_detail.html?hero=nakroth&mod=xiao'
+                },
+            ],
+            flo: [
+                {
+                    id: 'furina',
+                    name: 'Furina Mod',
+                    description: 'Mod skin Flo Furina.',
+                    thumb: 'images/flo_furina_thumb.jpg', // Nhớ tạo ảnh này
+                    detailPage: 'mod_detail.html?hero=flo&mod=furina'
+                },
+            ]
+        };
+
+        // ================================================
+        // 2. HÀM HIỂN THỊ DANH SÁCH MOD
+        // ================================================
+        function displayMods(heroKey) {
+            const container = document.getElementById('mod-list-container');
+            const characterNameElement = document.getElementById('character-name');
+
+            if (!container || !characterNameElement) {
+                console.error("Không tìm thấy container hoặc thẻ h1!");
+                if(container) container.innerHTML = '<p>Lỗi: Không thể hiển thị mod.</p>';
+                return;
+            }
+
+            container.innerHTML = ''; // Xóa nội dung cũ (ví dụ: "Đang tải...")
+
+            const mods = heroModsData[heroKey]; // Lấy danh sách mod dựa trên key (tên tướng)
+
+            // Cập nhật tên tướng trên H1
+            if (heroKey && mods !== undefined) { // Kiểm tra xem tướng có tồn tại trong dữ liệu không
+                // Viết hoa chữ cái đầu
+                const formattedHeroName = heroKey.charAt(0).toUpperCase() + heroKey.slice(1);
+                characterNameElement.textContent = `Mod Skin cho ${formattedHeroName}`;
+                document.title = `Mod Skin ${formattedHeroName} - TẠC THIÊN BANG MOD`; // Cập nhật tiêu đề trang
+            } else {
+                // Xử lý trường hợp không tìm thấy tướng trong dữ liệu
+                 const requestedHero = heroKey ? heroKey.charAt(0).toUpperCase() + heroKey.slice(1) : "không xác định";
+                characterNameElement.textContent = `Không tìm thấy tướng "${requestedHero}"`;
+                 document.title = `Không tìm thấy tướng - TẠC THIÊN BANG MOD`;
+            }
+
+
+            // Hiển thị mod hoặc thông báo
+            if (mods && mods.length > 0) {
+                mods.forEach(mod => {
+                    // Tạo HTML cho mỗi mod card bằng template literal (dấu `)
+                    const modCardHTML = `
+                        <div class="card mod-card">
+                            <img src="${mod.thumb}" alt="${mod.name} Thumbnail" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"> <!-- Ẩn ảnh nếu lỗi -->
+                            <div style="display:none; color: grey; font-size:0.8em; padding: 10px 0;">(Không có ảnh thumbnail)</div> <!-- Thông báo nếu ảnh lỗi -->
+                            <h3>${mod.name}</h3>
+                            <p class="mod-description">${mod.description}</p>
+                            <a href="${mod.detailPage}" class="button">Xem chi tiết & Tải về</a>
+                        </div>
+                    `;
+                    // Thêm card vào container
+                    container.insertAdjacentHTML('beforeend', modCardHTML); // Thêm vào cuối container
+                });
+            } else if (heroKey && mods !== undefined) {
+                 // Có tên tướng nhưng mảng mod rỗng
+                 container.innerHTML = '<p>Hiện tại chưa có bản mod nào cho tướng này.</p>';
+            }
+             else {
+                // Không có tên tướng hợp lệ được cung cấp hoặc không tìm thấy
+                container.innerHTML = '<p>Vui lòng chọn một tướng từ trang chủ để xem danh sách mod.</p>';
+            }
+        }
+
+        // ================================================
+        // 3. LẤY THAM SỐ TỪ URL VÀ GỌI HÀM HIỂN THỊ
+        // ================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chạy khi toàn bộ cấu trúc HTML đã được tải
+            const urlParams = new URLSearchParams(window.location.search);
+            const heroNameFromUrl = urlParams.get('hero'); // Lấy giá trị của ?hero=...
+
+             // Gọi hàm displayMods với tên tướng lấy được (hoặc null nếu không có)
+            displayMods(heroNameFromUrl ? heroNameFromUrl.toLowerCase() : null);
+        });
+
+    </script>
+
+</body>
+</html>

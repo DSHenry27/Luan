@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tiêu đề sẽ được cập nhật bằng JavaScript -->
+    <title>Chi tiết Mod - TẠC THIÊN BANG MOD</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link đến file CSS của bạn -->
+</head>
+<body>
+    <header>
+        <!-- Tiêu đề chính sẽ được cập nhật bằng JavaScript -->
+        <h1 id="mod-title">Đang tải chi tiết mod...</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <!-- Link quay lại trang tướng sẽ được cập nhật bằng JavaScript -->
+            <a href="#" id="back-to-character">Quay lại danh sách</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Container chính cho nội dung chi tiết -->
+        <article class="mod-detail-content" id="mod-detail-container">
+            <!-- Nội dung chi tiết sẽ được thêm vào đây động -->
+            <p>Đang tải thông tin chi tiết...</p>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2025 TẠC THIÊN BANG MOD. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Phần JavaScript xử lý logic -->
+    <script>
+        // ================================================
+        // 1. DỮ LIỆU CHI TIẾT CHO TỪNG MOD
+        // ================================================
+        // Bạn cần cập nhật và thêm dữ liệu chi tiết cho TẤT CẢ các mod
+        // Key: Là sự kết hợp của "heroName_modId" (ví dụ: "mina_castorice")
+        // Value: Object chứa thông tin chi tiết của mod đó
+        const modDetailsData = {
+            'mina_castorice': { // Key khớp với ?hero=mina&mod=castorice
+                hero: 'mina', // Tên tướng để hiển thị
+                modName: 'castorice Mod',
+                previewImage: 'images/mina_castorice_thumb.jpg', // Ảnh xem trước lớn
+                features: 'Mod skin mina castorice trong honkai: star rail.<br> Mod video.<br> Mod ảnh tướng.',
+                instructions: `
+                    1. Tải file mod (.zip) về máy.<br>
+                    2. Sử dụng ứng dụng quản lý file (ví dụ: ZArchiver).<br>
+                    3. Tìm đến file vừa tải, giải nén.<br>
+                    4. Chép các file/thư mục bên trong vào đường dẫn sau trên bộ nhớ trong của điện thoại:<br>
+                    <code>/Android/data/com.garena.game.kgvn/files/Resources/....<br>
+                    5. Ghi đè nếu được hỏi.<br>
+                    6. Vào game và kiểm tra skin trong trận đấu.`,
+                downloadLink: 'https://drive.google.com/file/d/1-E9ez_uxYrUHJOnuu6tQMWReRDy5tB5D/view?usp=drivesdk', // Đường dẫn file tải về
+                downloadFileName: 'mina_castorice_mod.zip' // Tên file khi tải
+            },
+            'nakroth_xiao': { // Key khớp với ?hero=nakroth&mod=xiao
+                hero: 'nakroth', // Tên tướng để hiển thị
+                modName: 'Xiao Mod',
+                previewImage: 'images/nakroth_xiao_thumb.jpg', // Ảnh xem trước lớn
+                features: 'Mod skin Nakroth Xiao trong Genshin.<br>Mod ngoại hình + vũ khí.<br>Mod video.<br> Mod ảnh tướng.',
+                instructions: `
+                    1. Tải file mod (.zip) về máy.<br>
+                    2. Sử dụng ứng dụng quản lý file (ví dụ: ZArchiver).<br>
+                    3. Tìm đến file vừa tải, giải nén.<br>
+                    4. Chép các file/thư mục bên trong vào đường dẫn sau trên bộ nhớ trong của điện thoại:<br>
+                    <code>/Android/data/com.garena.game.kgvn/files/Resources/....<br>
+                    5. Ghi đè nếu được hỏi.<br>
+                    6. Vào game và kiểm tra skin trong trận đấu.`,
+                downloadLink: 'https://drive.google.com/file/d/1-GV59LCPSc8q8finezwgUlDpgrLbWI9G/view?usp=drivesdk', // Đường dẫn file tải về
+                downloadFileName: 'nakroth_xiao_mod.zip' // Tên file khi tải
+            },
+            'flo_furina': { 
+                hero: 'Florentino', // Tên tướng để hiển thị
+                modName: 'Furina Mod',
+                previewImage: 'images/flo_furina_thumb.jpg', // Ảnh xem trước lớn
+                features: 'Mod skin Flo Furina trong Genshin.<br>Chỉnh sửa từ mod của đạt allain (yt:@datallain07).<br>Mod ngoại hình + vũ khí.<br>Mod video.<br> Mod ảnh tướng.',
+                instructions: `
+                    1. Tải file mod (.zip) về máy.<br>
+                    2. Sử dụng ứng dụng quản lý file (ví dụ: ZArchiver).<br>
+                    3. Tìm đến file vừa tải, giải nén.<br>
+                    4. Chép các file/thư mục bên trong vào đường dẫn sau trên bộ nhớ trong của điện thoại:<br>
+                    <code>/Android/data/com.garena.game.kgvn/files/Resources/....<br>
+                    5. Ghi đè nếu được hỏi.<br>
+                    6. Vào game và kiểm tra skin trong trận đấu.`,
+                downloadLink: 'https://drive.google.com/file/d/1-CwE6rv6DM7npDuZEhJWg9nIHdxxknIV/view?usp=drivesdk', // Đường dẫn file tải về
+                downloadFileName: 'flo_furina_mod.zip' // Tên file khi tải
+            }
+        };
+
+        // ================================================
+        // 2. HÀM HIỂN THỊ CHI TIẾT MOD
+        // ================================================
+        function displayModDetails(heroKey, modKey) {
+            const container = document.getElementById('mod-detail-container');
+            const titleElement = document.getElementById('mod-title');
+            const backLinkElement = document.getElementById('back-to-character');
+
+            if (!container || !titleElement || !backLinkElement) {
+                console.error("Không tìm thấy các thành phần HTML cần thiết!");
+                if(container) container.innerHTML = '<p>Lỗi: Không thể hiển thị chi tiết mod.</p>';
+                return;
+            }
+
+            container.innerHTML = ''; // Xóa nội dung cũ
+
+            // Tạo key để tra cứu trong data
+            const detailKey = heroKey && modKey ? `${heroKey}_${modKey}` : null;
+            const modData = detailKey ? modDetailsData[detailKey] : null;
+
+            if (modData) {
+                // Có dữ liệu mod -> Hiển thị
+                const heroDisplayName = modData.hero || (heroKey ? heroKey.charAt(0).toUpperCase() + heroKey.slice(1) : '');
+                const modDisplayName = modData.modName || (modKey ? modKey.charAt(0).toUpperCase() + modKey.slice(1) : 'Mod');
+
+                // Cập nhật tiêu đề trang và H1
+                document.title = `Chi tiết ${modDisplayName} - ${heroDisplayName} | TẠC THIÊN BANG MOD`;
+                titleElement.textContent = `Chi tiết: ${modDisplayName} cho ${heroDisplayName}`;
+
+                // Cập nhật link quay lại
+                backLinkElement.href = `character.html?hero=${heroKey}`;
+                backLinkElement.textContent = `Quay lại ${heroDisplayName}`;
+
+                // Tạo nội dung HTML chi tiết
+                const detailHTML = `
+                    <h2 id="mod-name">${modDisplayName}</h2>
+
+                    <img id="mod-preview" src="${modData.previewImage}" alt="${modDisplayName} Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div style="display:none; color: grey; font-size:0.8em; padding: 10px 0; text-align:center;">(Không có ảnh preview)</div>
+
+                    <section class="mod-features">
+                        <h3>Tính năng:</h3>
+                        <p id="mod-features-text">${modData.features || 'Chưa có mô tả tính năng.'}</p>
+                    </section>
+
+                    <section class="mod-installation">
+                        <h3>Hướng dẫn cài đặt:</h3>
+                        <div id="mod-install-instructions">${modData.instructions || 'Chưa có hướng dẫn cài đặt.'}</div>
+                    </section>
+
+                    <a id="download-button"
+                       href="${modData.downloadLink || '#'}"
+                       class="button download-button ${!modData.downloadLink ? 'disabled' : ''}"
+                       ${modData.downloadLink ? `download="${modData.downloadFileName || 'mod_file.zip'}"` : 'onclick="return false;"'}
+                       title="${modData.downloadLink ? `Tải về ${modData.modName}` : 'Link tải chưa có sẵn'}">
+                        Tải về ${modDisplayName}
+                    </a>
+
+                    <!-- Có thể thêm phần bình luận ở đây nếu muốn -->
+                    <!--
+                    <section class="mod-comments">
+                        <h3>Bình luận</h3>
+                        ...
+                    </section>
+                    -->
+                `;
+                container.innerHTML = detailHTML;
+
+                 // Thêm class 'disabled' nếu không có link tải
+                 if (!modData.downloadLink) {
+                     const downloadBtn = container.querySelector('#download-button');
+                     if (downloadBtn) downloadBtn.classList.add('disabled');
+                 }
+
+            } else {
+                // Không tìm thấy dữ liệu mod
+                document.title = "Không tìm thấy Mod - TẠC THIÊN BANG MOD";
+                titleElement.textContent = "Không tìm thấy thông tin Mod";
+                backLinkElement.textContent = "Quay lại Trang Chủ"; // Đổi link quay lại trang chủ
+                backLinkElement.href = "index.html";
+                container.innerHTML = '<p>Rất tiếc, không tìm thấy thông tin chi tiết cho bản mod này hoặc URL không chính xác.</p>';
+            }
+        }
+
+         // CSS cho nút bị vô hiệu hóa (thêm vào file style.css hoặc trong thẻ <style>)
+         /*
+         .button.disabled {
+             background-color: #cccccc;
+             cursor: not-allowed;
+             pointer-events: none; // Ngăn chặn click
+         }
+         */
+
+
+        // ================================================
+        // 3. LẤY THAM SỐ TỪ URL VÀ GỌI HÀM HIỂN THỊ
+        // ================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const heroNameFromUrl = urlParams.get('hero');
+            const modNameFromUrl = urlParams.get('mod');
+
+            // Gọi hàm hiển thị chi tiết với các key đã được lấy và chuyển thành chữ thường
+            displayModDetails(
+                heroNameFromUrl ? heroNameFromUrl.toLowerCase() : null,
+                modNameFromUrl ? modNameFromUrl.toLowerCase() : null
+            );
+        });
+
+    </script>
+
+</body>
+</html>

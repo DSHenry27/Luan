@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Ủng hộ - TẠC THIÊN BANG MOD</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link đến file CSS chung -->
+</head>
+<body>
+    <header>
+        <!-- Giữ header giống các trang khác -->
+        <h1>TẠC THIÊN BANG MOD</h1>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <!-- Có thể thêm link quay lại trang trước nếu cần -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section chứa thông tin donate -->
+        <section id="donation-info">
+            <h2>Thông tin Ủng hộ (Donate)</h2>
+
+            <p>Nếu bạn thấy các bản mod hữu ích và muốn ủng hộ công sức của thành viên phát triển, bạn có thể donate qua thông tin dưới đây:</p>
+
+            <div class="account-details">
+                 <p><strong>Chủ tài khoản:</strong> Nguyễn Hữu Luân</p>
+                 <p><strong>Số tài khoản:</strong> <span class="stk">0368388402</span> <button class="copy-button" onclick="copyToClipboard('0368388402')">Sao chép</button></p>
+                 <p><strong>Ngân hàng:</strong> MB Bank (Ngân hàng Quân đội)</p>
+            </div>
+
+             <!-- Tùy chọn: Thêm ảnh QR Code nếu có -->
+             <!--
+             <div class="qr-code">
+                 <h3>Hoặc quét mã QR</h3>
+                 <img src="images/your_qr_code.png" alt="Mã QR Donate MB Bank">
+             </div>
+             -->
+
+            <p class="thank-you-message">
+                <em>Mọi sự ủng hộ, dù nhỏ nhất, đều là nguồn động lực lớn để TẠC THIÊN BANG MOD tiếp tục phát triển. Xin chân thành cảm ơn!</em>
+            </p>
+
+        </section>
+    </main>
+
+    <footer>
+        <!-- Giữ footer giống các trang khác -->
+        <p>© 2025 TẠC THIÊN BANG MOD. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- JavaScript nhỏ để sao chép STK -->
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Đã sao chép số tài khoản: ' + text);
+            }).catch(err => {
+                alert('Lỗi khi sao chép: ', err);
+                // Có thể cung cấp hướng dẫn sao chép thủ công ở đây
+                // prompt('Không thể tự động sao chép. Vui lòng sao chép thủ công:', text);
+            });
+        }
+    </script>
+
+</body>
+</html>
